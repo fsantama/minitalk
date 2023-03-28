@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:29:27 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/28 17:04:25 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:44:51 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,22 @@
 #include <sys/types.h>
 #include <stdio.h>
 
-/*void	ft_message_received(void)
+void	ft_handler(int i, siginfo_t *info, void *param)
 {
-	write(1, "signal received", 15);
-}
-*/
-void    ft_handler(int i, siginfo_t *info, void *param)
-{
-    static int              bit = 0;
-    static unsigned char    str = 0;
-    (void)info;
-    (void)param;
-    if (i == SIGUSR2)
-        str = str + (1 << bit);
-    bit++;
-    if (bit == 8)
-    {
-        write (1, &str, 1);
-        bit = 0;
-        str = 0;
-    }
+	static int				bit = 0;
+	static unsigned char	str = 0;
+
+	(void)info;
+	(void)param;
+	if (i == SIGUSR2)
+		str = str + (1 << bit);
+	bit++;
+	if (bit == 8)
+	{
+		write (1, &str, 1);
+		bit = 0;
+		str = 0;
+	}
 }
 
 void	ft_putchar_fd(char c, int fd)
@@ -68,18 +64,12 @@ void	ft_putnbr_fd(int n, int fd)
 
 int	main(void)
 {
-	struct sigaction server;
-	
-	server.sa_sigaction = ft_handler;
+	struct sigaction	server;
 
-	//sigaction.to_handler = 
-//	ft_handler(65);
+	server.sa_sigaction = ft_handler;
 	server.sa_flags = SA_SIGINFO;
-//	ft_putstr_fd("\e[92mserver [PID = ", STDOUT_FILENO);
 	ft_putnbr_fd(getpid(), STDOUT_FILENO);
 	write (1, "\n", 1);
-//	signal(SIGUSR1, ft_message_received);
-//	ft_putstr_fd("]\n\e[0m", STDOUT_FILENO);
 	sigaction(SIGUSR1, &server, NULL);
 	sigaction(SIGUSR2, &server, NULL);
 	while (1)

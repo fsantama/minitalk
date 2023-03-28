@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:25:30 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/28 17:03:21 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:40:26 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 void	ft_send_bytes(pid_t pid, char *str)
 {
-	int	i = 0;
-	int	count = 0;
+	int	i;
+	int	count;
 
-//	i = 0;
-//	count = 7;
+	i = 0;
+	count = 0;
 	while (str[i])
 	{
 		count = 0;
@@ -38,25 +38,6 @@ void	ft_send_bytes(pid_t pid, char *str)
 	}
 }
 
-/*void    ft_send_bytes(int pid_client, char *s)
-{
-    int     i;
-    int     count;
-    i = -1;
-    while (s[++i])
-    {
-        count = -1;
-        while (++count != 8)
-        {
-            if ((s[i] >> count) & 1)
-                kill(pid_client, SIGUSR2);
-            else
-                kill(pid_client, SIGUSR1);
-            usleep (100);
-        }
-    }
-}
-*/
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -89,9 +70,7 @@ int	main(int argc, char **argv)
 		write(1, "client: invalid arguments\n", 27);
 		exit(EXIT_FAILURE);
 	}
-//	pid = printf("%d\n", (ft_atoi(argv[1])));
 	pid = ft_atoi(argv[1]);
-//	kill(pid, SIGUSR1);
 	ft_send_bytes(pid, argv[2]);
 	ft_send_bytes(pid, "\n\0");
 	return (0);
