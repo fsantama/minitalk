@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:29:27 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/28 18:53:45 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:46:17 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_handler(int i, siginfo_t *info, void *param)
 	static int				bit = 0;
 	static unsigned char	str = 0;
 
-	(void)info;
 	(void)param;
 	if (i == SIGUSR2)
 		str = str + (1 << bit);
@@ -32,11 +31,7 @@ void	ft_handler(int i, siginfo_t *info, void *param)
 		bit = 0;
 		str = 0;
 	}
-}
-
-void	ft_send_confirmation(pid_t pid)
-{
-	kill(pid, SIGUSR1);
+	kill(info->si_pid, SIGUSR1);
 }
 
 void	ft_putchar_fd(char c, int fd)
@@ -78,9 +73,6 @@ int	main(void)
 	sigaction(SIGUSR1, &server, NULL);
 	sigaction(SIGUSR2, &server, NULL);
 	while (1)
-	{
 		pause();
-		ft_send_confirmation(getpid());
-	}
 	return (0);
 }
