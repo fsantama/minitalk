@@ -6,14 +6,13 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:25:30 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/30 17:13:29 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:27:09 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
 #include <stdlib.h>
-// #include <stdio.h>
 
 void	ft_send_bytes(pid_t pid, char *str)
 {

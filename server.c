@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:29:27 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/28 17:44:51 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:27:31 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <stdio.h>
 
 void	ft_handler(int i, siginfo_t *info, void *param)
 {

@@ -6,7 +6,7 @@
 /*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:29:27 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/30 17:15:05 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:22:09 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_handler(int i, siginfo_t *info, void *param)
 	}
 	else if (bit == 8 && str == 0)
 	{
+		write (1, "\n", 1);
 		kill(info->si_pid, SIGUSR1);
 		bit = 0;
 		str = 0;
