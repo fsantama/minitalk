@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:25:30 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/28 17:40:26 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:13:29 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

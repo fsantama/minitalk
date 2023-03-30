@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:29:27 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/29 17:46:17 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:15:05 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@ void	ft_handler(int i, siginfo_t *info, void *param)
 	if (i == SIGUSR2)
 		str = str + (1 << bit);
 	bit++;
-	if (bit == 8)
+	if (bit == 8 && str)
 	{
 		write (1, &str, 1);
 		bit = 0;
 		str = 0;
 	}
-	kill(info->si_pid, SIGUSR1);
+	else if (bit == 8 && str == 0)
+	{
+		kill(info->si_pid, SIGUSR1);
+		bit = 0;
+		str = 0;
+	}
 }
 
 void	ft_putchar_fd(char c, int fd)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantama <fsantama@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fsantama <fsantama@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:25:30 by fsantama          #+#    #+#             */
-/*   Updated: 2023/03/29 17:44:52 by fsantama         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:18:30 by fsantama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+void	ft_final_message(pid_t pid)
+{
+	int	count;
+
+	count = 0;
+	while (count != 8)
+	{
+		kill(pid, SIGUSR1);
+		usleep(100);
+		count++;
+	}
+}
 
 void	ft_handler(int i)
 {
@@ -42,6 +55,7 @@ void	ft_send_bytes(pid_t pid, char *str)
 		}
 		i++;
 	}
+	ft_final_message(pid);
 }
 
 int	ft_atoi(const char *str)
@@ -75,7 +89,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		printf("Usage: ./client [server PID] [str to send]\n");
+		write(1, "Usage: ./client [server PID] [str to send]\n", 43);
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
